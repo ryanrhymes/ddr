@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 
+import httplib
 import os
 import socket
 import sys
@@ -13,8 +14,13 @@ def test():
     sock.connect(server_address)
     pass
 
+def test2():
+    server_address = '/var/run/docker.sock'
+    h = httplib.HTTPConnection(server_address)
+    pass
+
 
 if __name__=="__main__":
-    test()
+    test2()
 
     sys.exit(0)
