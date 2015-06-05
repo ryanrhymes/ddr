@@ -31,12 +31,14 @@ def test():
     sock.connect(server_address)
     pass
 
+
 def test2():
     server_address = '/var/run/docker.sock'
     conn = Uhttplib(server_address)
     conn.connect()
 
     conn.request("GET", "/version")
+    conn.request("GET", "/images/json")
     resp = conn.getresponse()
 
     print resp.read()
