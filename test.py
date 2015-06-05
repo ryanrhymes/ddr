@@ -2,6 +2,7 @@
 
 
 import httplib
+import json
 import os
 import socket
 import sys
@@ -41,7 +42,9 @@ def test2():
     conn.request("GET", "/images/json")
     resp = conn.getresponse()
 
-    print resp.read()
+    data = resp.read()
+    obj = json.loads(data)
+    print obj
     pass
 
 
