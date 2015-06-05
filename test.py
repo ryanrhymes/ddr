@@ -16,7 +16,11 @@ def test():
 
 def test2():
     server_address = '/var/run/docker.sock'
-    h = httplib.HTTPConnection(server_address)
+    conn = httplib.HTTPConnection(server_address)
+    conn.request("GET", "/")
+    resp = conn.getresponse()
+
+    print resp
     pass
 
 
