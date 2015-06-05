@@ -2,9 +2,16 @@
 
 
 import os
+import socket
 import sys
 
 
-if __name__=="__main__":
+def test():
     print "hello"
+    pass
+
+
+if __name__=="__main__":
+    test()
+
     sys.exit(0)
