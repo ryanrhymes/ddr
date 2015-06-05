@@ -39,7 +39,7 @@ def test2():
     conn.request("GET", "/version")
     resp = conn.getresponse()
 
-    print resp
+    print str(resp)
     pass
 
 
