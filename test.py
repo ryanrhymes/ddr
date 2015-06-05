@@ -37,7 +37,7 @@ def test2():
     conn = Uhttplib(server_address)
     conn.connect()
 
-    conn.request("GET", "/version")
+    ###conn.request("GET", "/version")
     conn.request("GET", "/images/json")
     resp = conn.getresponse()
 
