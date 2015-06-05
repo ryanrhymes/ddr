@@ -44,7 +44,9 @@ def test2():
 
     data = resp.read()
     obj = json.loads(data)
-    print obj
+    print obj[0]
+    print obj[0].Created
+
     pass
 
 
