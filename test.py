@@ -33,7 +33,7 @@ def test():
 
 def test2():
     server_address = '/var/run/docker.sock'
-    conn = Uhttplib.HTTPConnection(server_address)
+    conn = Uhttplib.connect(server_address)
     conn.request("GET", "/version")
     resp = conn.getresponse()
 
