@@ -13,7 +13,35 @@ class Registry():
         pass
 
 
-    def init_service_list():
+    def init_service_list(self):
+        pass
+
+
+    def register_service(self):
+        pass
+
+
+    def unregister_service(self):
+        pass
+
+
+    def get_registry_list(self):
+        pass
+
+
+    def start_service(self):
+        pass
+
+
+    def stop_service(self):
+        pass
+
+
+    def retrieve_service_image(self):
+        pass
+
+
+    def delete_service_image(self):
         pass
 
     pass
