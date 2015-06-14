@@ -26,13 +26,21 @@ def test_2():
 
 def test_3():
     cli = Client(base_url="unix://var/run/docker.sock")
-    s = cli.pull("busybox")
+    s = cli.pull("hello-world")
     print s
+    pass
+
+
+def test_4():
+    cli = Client(base_url="unix://var/run/docker.sock")
+    container = cli.create_container(image='busybox:latest', command='/bin/sleep 10')
+    response = cli.start(container=container.get('Id'))
+    print cli.top(container)
     pass
 
 
 if __name__=="__main__":
     test_1()
-    test_3()
+    test_4()
 
     sys.exit(0)
