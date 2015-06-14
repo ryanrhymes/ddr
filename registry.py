@@ -1,9 +1,18 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Registry handles service registration and images transmission.
+#
+# Liang Wang @ Computer Lab, Cambridge University
+# 2015.06.15
+
 
 import os
 import sys
 
+from service import *
 from docker import Client
+
 
 class Registry():
 
