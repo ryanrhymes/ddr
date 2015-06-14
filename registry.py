@@ -5,34 +5,27 @@ import sys
 
 from docker import Client
 
-def test_1():
-    cli = Client(base_url="unix://var/run/docker.sock")
-    l = cli.images()
+class Registry():
 
-    for d in l:
-        print d['RepoTags']
+    def __init__(self, cli):
+        self._cli = cli
+        self._service = None
+        pass
+
+
+    def init_service_list():
+        pass
+
     pass
 
 
-def test_2():
+def test():
     cli = Client(base_url="unix://var/run/docker.sock")
-    img = cli.get_image('ubuntu')
-
-    tar = open("ubuntu.tar", 'w')
-    tar.write(img.data)
-    tar.close()
-    pass
-
-
-def test_3():
-    cli = Client(base_url="unix://var/run/docker.sock")
-    s = cli.pull("busybox")
-    print s
+    reg = Registry(cli)
     pass
 
 
 if __name__=="__main__":
-    test_1()
-    test_3()
+    test()
 
     sys.exit(0)
