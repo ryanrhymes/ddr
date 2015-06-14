@@ -19,6 +19,7 @@ class Registry():
     def __init__(self, cli):
         self._cli = cli
         self._services = None
+        self.init_service_list()
         pass
 
 
@@ -26,7 +27,7 @@ class Registry():
         """Init the service list."""
         images = self._cli.images()
         for image in images:
-            print image
+            self._services.append(image)
         pass
 
 
