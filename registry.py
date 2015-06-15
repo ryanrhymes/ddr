@@ -22,8 +22,7 @@ class Registry():
         self._cli = cli
         self._services = {}
         self.init_service_list()
-        self._network = Network()
-        print 'here'
+        #self._network = Network()
         pass
 
 
