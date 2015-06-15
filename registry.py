@@ -11,6 +11,7 @@ import os
 import sys
 
 from service import *
+from config import conf, logger
 from docker import Client
 
 
@@ -18,7 +19,7 @@ class Registry():
 
     def __init__(self, cli):
         self._cli = cli
-        self._services = None
+        self._services = {}
         self.init_service_list()
         pass
 
@@ -27,7 +28,16 @@ class Registry():
         """Init the service list."""
         images = self._cli.images()
         for image in images:
-            self._services.append(image)
+            self._services[image['Id']] = image
+
+            # liang: dump the images, need to move to cache abstraction in the future.
+            logger.info('dumping %s' % image['Id'])
+            if image['Id'] == u'3d3b49d80014e2df3434f282586b3bb2cff0f7b5f58a3e63d9229c48085a53a8':
+                continue
+            raw = self._cli.get_image(image['Id'])
+            tar = open(conf['image_dir']+image['Id']+'.tar', 'w')
+            tar.write(raw.data)
+            tar.close()
         pass
 
 
@@ -62,7 +72,7 @@ class Registry():
 
 
 def test():
-    cli = Client(base_url="unix://var/run/docker.sock")
+    cli = Client(conf['base_url'])
     reg = Registry(cli)
     pass
 
