@@ -11,6 +11,7 @@ import os
 import sys
 
 from service import *
+from network import *
 from config import conf, logger
 from docker import Client
 
@@ -21,6 +22,7 @@ class Registry():
         self._cli = cli
         self._services = {}
         self.init_service_list()
+        self._network = Network()
         pass
 
 
@@ -55,11 +57,9 @@ class Registry():
 
 
     def start_service(self, sid, cmd):
-        #self._cli.create_container(image=sid, command=cmd)
-        container = self._cli.create_container(image='busybox:latest', command=cmd)
-        print container
-        self._cli.start(sid)
-        pass
+        container = self._cli.create_container(image=sid, command=cmd)
+        self._cli.start(container.get('Id'))
+        return container
 
 
     def stop_service(self):
@@ -79,7 +79,8 @@ class Registry():
 def test():
     cli = Client(conf['base_url'])
     reg = Registry(cli)
-    #reg.start_service(u'8c2e06607696bd4afb3d03b687e361cc43cf8ec1a4a725bc96e39f05ba97dd55', '/bin/sleep 30')
+    reg.start_service(u'8c2e06607696bd4afb3d03b687e361cc43cf8ec1a4a725bc96e39f05ba97dd55', '/bin/sleep 30')
+    reg._network.broadcast('hello')
     pass
 
 
