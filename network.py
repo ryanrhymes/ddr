@@ -8,6 +8,7 @@
 
 
 from socket import *
+from select import *
 from threading import Thread
 
 PORT = 56789
@@ -30,12 +31,12 @@ class Network():
 
 
     def start_listen(self):
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s = socket(AF_INET, SOCK_DGRAM)
         s.bind(('<broadcast>', PORT))
         s.setblocking(0)
 
         while True:
-            result = select.select([s],[],[])
+            result = select([s],[],[])
             msg = result[0][0].recv(1024) 
             print msg
             pass

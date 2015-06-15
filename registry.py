@@ -23,6 +23,7 @@ class Registry():
         self._services = {}
         self.init_service_list()
         self._network = Network()
+        print 'here'
         pass
 
 
