@@ -13,7 +13,8 @@ import logging
 
 # set basic paramters
 conf = dict()
-conf['base_url'] = "unix://var/run/docker.sock"
+#conf['base_url'] = "unix://var/run/docker.sock"
+conf['base_url'] = "tcp://128.232.65.27:2375"
 conf['image_dir'] = "/var/tmp/ddr/"
 
 if not os.path.exists(conf['image_dir']):

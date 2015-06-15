@@ -8,7 +8,7 @@
 
 
 from socket import *
-
+from threading import Thread
 
 PORT = 56789
 
@@ -18,12 +18,27 @@ class Network():
         self._udp = socket(AF_INET, SOCK_DGRAM)
         self._udp.bind( ('', 0) )
         self._udp.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
+
+        t = Thread(target=self.start_listen)
+        t.start()
         pass
 
 
     def broadcast(self, data):
         self._udp.sendto(data, ('<broadcast>', PORT))
         pass
+
+
+    def start_listen(self):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.bind(('<broadcast>', PORT))
+        s.setblocking(0)
+
+        while True:
+            result = select.select([s],[],[])
+            msg = result[0][0].recv(1024) 
+            print msg
+            pass
 
 
     pass
