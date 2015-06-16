@@ -36,10 +36,11 @@ class Network():
         s.setblocking(0)
 
         while True:
-            result = select([s],[],[])
-            msg = result[0][0].recv(1024) 
-            print msg
-            pass
-
+            try:
+                result = select([s],[],[])
+                msg = result[0][0].recv(1024) 
+                print msg
+            except KeyboardInterrupt:
+                break
 
     pass

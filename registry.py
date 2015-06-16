@@ -21,8 +21,8 @@ class Registry():
     def __init__(self, cli):
         self._cli = cli
         self._services = {}
-        self.init_service_list()
-        #self._network = Network()
+        #self.init_service_list()
+        self._network = Network()
         pass
 
 
@@ -77,9 +77,10 @@ class Registry():
 
 
 def test():
-    cli = Client(conf['base_url'])
+    #cli = Client(conf['base_url'])
+    cli = None
     reg = Registry(cli)
-    reg.start_service(u'8c2e06607696bd4afb3d03b687e361cc43cf8ec1a4a725bc96e39f05ba97dd55', '/bin/sleep 30')
+    #reg.start_service(u'8c2e06607696bd4afb3d03b687e361cc43cf8ec1a4a725bc96e39f05ba97dd55', '/bin/sleep 30')
     reg._network.broadcast('hello')
     pass
 
