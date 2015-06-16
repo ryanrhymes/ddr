@@ -27,6 +27,7 @@ class Cache():
         if sid not in self._cache:
             self._cache[sid] = {}
             self._cache[sid]['size'] = 0 # fix
+            self._cache[sid]['path'] = '' # fix
             # dumping the image ... not done yet ...
         self.touch(sid)
         pass
